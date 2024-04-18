@@ -30,7 +30,9 @@ public class UserService {
 		// ici je suis dans la DTO
 		User userACreer = new User(
 				user.getName(),
-				user.getFirstname()
+				user.getFirstname(),
+				user.getEmail(),
+				user.getMdp()
 		);
 		// je suis dans une entité
 		return repository.save(userACreer);

@@ -12,9 +12,19 @@ public class CreateUser {
 	@NotBlank
 	private String firstname;
 
-	public CreateUser(String name, String firstname) {
+	//Add control mail (Aa.Bb@Cc.com)
+	@NotBlank
+	private String email;
+
+	//Add control mdp (maj, min, 0-9, !)
+	@NotBlank
+	private String mdp;
+
+	public CreateUser(String name, String firstname, String email, String mdp) {
 		this.name = name;
 		this.firstname = firstname;
+		this.email = email;
+		this.mdp = mdp;
 	}
 
 	public String getName() {
@@ -24,6 +34,13 @@ public class CreateUser {
 	public String getFirstname() {
 		return firstname;
 	}
-    
+
+	public String getEmail(){
+		return email;
+	}
+
+	public String getMdp(){
+		return mdp;
+	}
 
 }
