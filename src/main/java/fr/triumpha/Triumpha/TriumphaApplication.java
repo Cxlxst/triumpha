@@ -15,8 +15,9 @@ public class TriumphaApplication {
 		SpringApplication.run(TriumphaApplication.class, args);
 	}
 
-	@GetMapping("hello-world")
-	public String helloWorld(){
-	    return "Hellooo world";
+	@GetMapping("test")
+	public String testFonctionnent()
+	{
+		return "Test fonctionnement";
 	}
 }
