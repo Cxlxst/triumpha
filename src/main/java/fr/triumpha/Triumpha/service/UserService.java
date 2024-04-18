@@ -26,14 +26,14 @@ public class UserService {
 		return repository.findOneByUuid(uuid).orElse(null);
 	}
 	
-	public User create(CreateUser student) {
+	public User create(CreateUser user) {
 		// ici je suis dans la DTO
-		User studentACreer = new User(
-				student.getName(),
-				student.getFirstname()
+		User userACreer = new User(
+				user.getName(),
+				user.getFirstname()
 		);
 		// je suis dans une entité
-		return repository.save(studentACreer);
+		return repository.save(userACreer);
 	}
 
 

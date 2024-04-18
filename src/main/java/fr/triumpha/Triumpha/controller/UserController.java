@@ -35,8 +35,8 @@ public class UserController {
 
 	@GetMapping("/{uuid}")
 	public ResponseEntity<User> findOneById(@PathVariable String uuid) {
-		User student = service.findUserById(uuid);
-		if(student != null) {
+		User user = service.findUserById(uuid);
+		if(user != null) {
 			return new ResponseEntity<>(service.findUserById(uuid), HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
