@@ -65,7 +65,7 @@ public class User {
     public String getEmail() {
         return email;
     }
-    public void getEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -79,13 +79,12 @@ public class User {
     public LocalDateTime getDeletedAt() {
 		return deletedAt;
 	}
+    public void setDeletedAt(LocalDateTime deletedAt) {
+		this.deletedAt = deletedAt;
+	}
 
     public Date getCreatedAt() {
 		return createdAt;
-	}
-
-	public void setDeletedAt(LocalDateTime deletedAt) {
-		this.deletedAt = deletedAt;
 	}
 
     public List<Reservation> getReservation(){
