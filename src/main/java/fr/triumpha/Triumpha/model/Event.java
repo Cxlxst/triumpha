@@ -40,8 +40,12 @@ public class Event {
     private List<Reservation> reservations;
 
     public Event(){}
-    public Event(String title){
+    public Event(String title, String description, Date eventDate, Integer startHour, Integer endHour){
         this.title = title;
+        this.description = description;
+        this.eventDate = eventDate;
+        this.startHour = startHour;
+        this.endHour = endHour;
     }
 
     public String getUuid(){
@@ -86,9 +90,15 @@ public class Event {
     public CategoryEvent getCategory(){
         return category;
     }
+    public void setCategory(CategoryEvent category) {
+        this.category = category;
+    }
 
     public Location getLocation(){
         return location;
+    }
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public List<Reservation> getReservation(){

@@ -36,10 +36,28 @@ public class Reservation {
         this.title = title;
     }
 
+    public String getUuid() {
+		return uuid;
+	}
+
     public String getTitle(){
         return title;
     }
     public void setTitle(String title){
         this.title = title;
+    }
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+    public void setEvent(Event event) {
+        this.event = event;
     }
 }
