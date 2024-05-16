@@ -40,8 +40,10 @@ public class Reservation {
     private Event event;
 
     public Reservation(){}
-    public Reservation(String title){
+    public Reservation(String title, Event event, User user){
         this.title = title;
+        this.event = event;
+        this.user = user;
     }
 
     public String getUuid() {
@@ -68,4 +70,5 @@ public class Reservation {
     public void setEvent(Event event) {
         this.event = event;
     }
+
 }
