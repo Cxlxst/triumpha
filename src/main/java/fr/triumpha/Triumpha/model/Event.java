@@ -2,6 +2,7 @@ package fr.triumpha.Triumpha.model;
 
 import java.sql.Date;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,6 +38,7 @@ public class Event {
     private Location location;
 
     @OneToMany(mappedBy = "event")
+    @JsonIgnore //On empêche ici la sérialisation des listes de réservations
     private List<Reservation> reservations;
 
     public Event(){}
