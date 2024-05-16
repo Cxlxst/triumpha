@@ -1,7 +1,10 @@
 package fr.triumpha.Triumpha.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,9 +27,9 @@ public class Event {
 
     private Date eventDate;
 
-    private Integer startHour;
+    private LocalTime startHour;
 
-    private Integer endHour;
+    private LocalTime endHour;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -37,10 +40,11 @@ public class Event {
     private Location location;
 
     @OneToMany(mappedBy = "event")
+    @JsonIgnore //On empêche ici la sérialisation des listes de réservations
     private List<Reservation> reservations;
 
     public Event(){}
-    public Event(String title, String description, Date eventDate, Integer startHour, Integer endHour){
+    public Event(String title, String description, Date eventDate, LocalTime startHour, LocalTime endHour){
         this.title = title;
         this.description = description;
         this.eventDate = eventDate;
@@ -73,17 +77,17 @@ public class Event {
         this.eventDate = evenDate;
     }
 
-    public Integer getStartHour(){
+    public LocalTime getStartHour(){
         return startHour;
     }
-    public void setStartHour(Integer startHour){
+    public void setStartHour(LocalTime startHour){
         this.startHour = startHour;
     }
 
-    public Integer getEndHour(){
+    public LocalTime getEndHour(){
         return endHour;
     }
-    public void setEndHour(Integer endHour){
+    public void setEndHour(LocalTime endHour){
         this.endHour = endHour;
     }
 
