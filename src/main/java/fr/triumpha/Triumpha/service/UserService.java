@@ -19,7 +19,8 @@ public class UserService {
 	}
 
 	public List<User> findAllUser() {
-		return repository.findAllByDeletedAtNull();
+		List<User> users = repository.findAll();
+		return users;
 	}
 
 	public User findUserById(String uuid) {

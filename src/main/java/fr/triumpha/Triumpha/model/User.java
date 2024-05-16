@@ -1,26 +1,32 @@
 package fr.triumpha.Triumpha.model;
 
+import fr.triumpha.Triumpha.constants.Role;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
+import java.util.*;
+
 @Entity
-public class User {
+public class User implements UserDetails {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String uuid;
 
-    @Column(
-		length = 25
-	)
     private String name;
 	
     private String firstname;
@@ -29,7 +35,10 @@ public class User {
 
     private String mdp;
 
-    private LocalDateTime deletedAt = null;
+    @Enumerated(EnumType.STRING)
+	private Role role;
+
+    // // private LocalDateTime deletedAt = null;
 
     private Date createdAt = new Date();
 
@@ -62,33 +71,72 @@ public class User {
         this.firstname = firstname;
     }
 
-    public String getEmail() {
+    @Override
+    public String getUsername() {
         return email;
     }
-    public void setEmail(String email) {
+    public void setUsername(String email) {
         this.email = email;
     }
 
-    public String getMdp() {
+    @Override
+    public String getPassword() {
         return mdp;
     }
-    public void setMdp(String mdp) {
+    public void setPassword(String mdp) {
         this.mdp = mdp;
     }
 
+    @Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Set<Role> roles = Set.of(role);
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+		for (Role role : roles) {
+			authorities.add(new SimpleGrantedAuthority(role.name()));
+		}
+		return authorities;
+	}
+    
+    public Role getRole() {
+        return role;
+    }
+    public void setRole(Role role) {
+        this.role = role;
+    }
+/* 
     public LocalDateTime getDeletedAt() {
 		return deletedAt;
 	}
     public void setDeletedAt(LocalDateTime deletedAt) {
 		this.deletedAt = deletedAt;
 	}
+*/
+//    public Date getCreatedAt() {
+//		return createdAt;
+//	}
 
-    public Date getCreatedAt() {
-		return createdAt;
-	}
-
-    public List<Reservation> getReservation(){
+    public List<Reservation> getReservation(String uuid){
         return reservations;
     }
-    
+ 
+    @Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

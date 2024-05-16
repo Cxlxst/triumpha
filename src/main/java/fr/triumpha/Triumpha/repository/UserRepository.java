@@ -11,7 +11,12 @@ import fr.triumpha.Triumpha.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String>{
 
-    List<User> findAllByDeletedAtNull();
+    // // List<User> findAllByDeletedAtNull();
+    @Override
+    List<User> findAll();
+
+
+    // // Optional<User> findAllByDeletedAtNull(String uuid);
 
     Optional<User> findOneByUuid(String uuid);
 
