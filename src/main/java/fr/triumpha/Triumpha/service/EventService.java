@@ -6,6 +6,7 @@ import java.util.List;
 
 import fr.triumpha.Triumpha.dto.CreateEvent;
 import fr.triumpha.Triumpha.model.Event;
+import fr.triumpha.Triumpha.model.User;
 import fr.triumpha.Triumpha.repository.EventRepository;
 
 @Service
@@ -20,6 +21,10 @@ public class EventService {
 
 	public List<Event> findAllEvents() {
 		return repository.findAll();
+	}
+
+	public Event findUserById(String uuid) {
+		return repository.findOneByUuid(uuid).orElse(null);
 	}
 
 
