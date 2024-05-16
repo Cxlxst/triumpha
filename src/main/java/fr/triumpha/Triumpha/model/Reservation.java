@@ -1,5 +1,10 @@
 package fr.triumpha.Triumpha.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +20,7 @@ import jakarta.persistence.UniqueConstraint;
     name = "reservation",
     uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "event_id"})
 )
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="uuid") //Permet de retourner chaque réservation de manière unique grace à l'uuid qui évite les doublons
 public class Reservation {
 
     @Id
@@ -25,10 +31,12 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
+    @JsonManagedReference
     private Event event;
 
     public Reservation(){}

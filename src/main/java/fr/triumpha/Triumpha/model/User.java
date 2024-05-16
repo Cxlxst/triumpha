@@ -8,6 +8,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.Date;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,6 +46,7 @@ public class User implements UserDetails {
     private Date createdAt = new Date();
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore //On empêche ici la sérialisation des listes de réservations
     private List<Reservation> reservations;
 
     public User() {}
