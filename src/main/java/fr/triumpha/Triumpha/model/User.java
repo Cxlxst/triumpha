@@ -120,7 +120,7 @@ public class User implements UserDetails {
 //		return createdAt;
 //	}
 
-    public List<Reservation> getReservation(String uuid){
+    public List<Reservation> getReservation(){
         return reservations;
     }
  
